@@ -1,0 +1,22 @@
+﻿<div class="col-xs-12 col-md-3">
+    <img ng-src={{contact.contactAvatar}} alt="{{contact.name}}" class="img-responsive img-circle" />
+</div>
+<div class="col-xs-12 col-sm-9">
+    <div>
+        <span class="glyphicon glyphicon-trash pull-right" ng-click="deleteContact(contact.contactId)" title="Delete Contact"></span>
+        <span class="name">
+            <a ng-href="#!/contactDetails/{{contact.contactId}}">
+                {{contact.contactName}}
+            </a>
+        </span><br />
+    </div>
+    <span class="glyphicon glyphicon-earphone text-muted c-info" title="Phone number"></span>
+    <span class="text" ng-bind="contact.phoneNumbers[0].phoneNumber"></span><br />
+    <span class="glyphicon glyphicon-envelope text-muted c-info" title="Email"></span>
+    <span class="text" ng-bind="contact.emails[0].emailAddress"></span><br />
+    <span class="glyphicon glyphicon-map-marker text-muted c-info" title="Location"></span>
+    <span class="text" ng-bind="contact.address"></span><br />
+    <span class="glyphicon glyphicon-bookmark text-muted c-info" title="Tag"></span>
+    <span class="text" ng-bind="contact.tags[0].tagName"></span><br />
+</div>
+<div class="clearfix"></div>

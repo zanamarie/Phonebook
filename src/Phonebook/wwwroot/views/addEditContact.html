@@ -1,0 +1,134 @@
+﻿<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading c-list">
+            <div ng-show="!IsAddMode" class="title">Edit contact</div>
+            <div ng-show="IsAddMode" class="title">Add new contact</div>
+        </div>
+        <form class="form-horizontal" name="addEditContactForm" novalidate>
+            <div class="alert alert-danger" ng-if="saveContactErrors">
+                <p> Form was not saved</p>
+                <div>Please correct the following errors: {{saveContactErrors}}</div>
+            </div>
+
+            <!-- Text input Full Name, required, maxlength = 100chars -->
+            <div class="form-group required">
+                <label class="col-md-4 control-label" for="Name">Full name</label>
+                <div class="input-group col-md-5">
+                    <input id="name" name="name" for="Name"
+                           type="text" placeholder="Full name"
+                           class="form-control input-md"
+                           ng-model="contact.contactName"
+                           required
+                           ng-maxlength="100" />
+                    <div ng-show="addEditContactForm.name.$invalid">
+                        <p ng-show="addEditContactForm.name.$error.required">Contact name is required</p>
+                        <p ng-show="addEditContactForm.name.$error.maxlength">Contact name too long, max is 100 characters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input Address, non-required, letters, numbers and '-', max 100chars-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Address">Address</label>
+                <div class="input-group col-md-5">
+                    <input id="address" name="address"
+                           type="text" placeholder="Address"
+                           class="form-control input-md"
+                           ng-model="contact.address"
+                           ng-pattern="addressPattern"
+                           ng-maxlength="100" />
+                    <div ng-show="addEditContactForm.address.$invalid">
+                        <p ng-show="addEditContactForm.address.$error.pattern" class="help-block">Address can contain only numbers, letters, '-'</p>
+                        <p ng-show="addEditContactForm.address.$error.maxlength">Address is too long, max is 100 characters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input City, non-required, letters and '-, max 100chars-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="City">City</label>
+                <div class="input-group col-md-5">
+                    <input id="city" name="city"
+                           type="text" placeholder="City"
+                           class="form-control input-md"
+                           ng-model="contact.city"
+                           ng-pattern="cityPattern"
+                           ng-maxlength="100" />
+                    <div ng-show="addEditContactForm.city.$invalid">
+                        <p ng-show="addEditContactForm.city.$error.pattern" class="help-block">City can contain only letters and '-'</p>
+                        <p ng-show="addEditContactForm.city.$error.maxlength">City name is too long, max is 100 characters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input Zip Code, non-required, only numbers, max 20chars-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Zip Code">Zip Code</label>
+                <div class="input-group col-md-5">
+                    <input id="zipCpde" name="zipCode"
+                           type="text" placeholder="Zip Code"
+                           class="form-control input-md"
+                           ng-model="contact.zipCode"
+                           ng-pattern="zipPattern"
+                           ng-maxlength="20" />
+                    <div ng-show="addEditContactForm.zipCode.$invalid">
+                        <p ng-show="addEditContactForm.zipCode.$error.pattern" class="help-block">Zip code can contain only numbers (max 40 numbers) and '-'</p>
+                        <p ng-show="addEditContactForm.zipCode.$error.maxlength">Zip Code is too long, max is 100 characters.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text inout Phonenumber, required, maxlength = 50chars -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Phone number" style="margin-top:15px">Phone number </label>
+                <div class="input-group col-md-5">
+                    <dynamic-input field="phone" array="contact.phoneNumbers" value="phoneNumber" errors="phoneValidationMessages"> </dynamic-input>
+                </div>
+            </div>
+
+            <!-- Email input type, non-required, email verification, max 254chars-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Email" style="margin-top:15px">Emails</label>
+                <div class="input-group col-md-5">
+                    <dynamic-input field="email" array="contact.emails" value="emailAddress" errors="emailValidationMessages"> </dynamic-input>
+                </div>
+            </div>
+
+            <!-- Text input Tag, non-required, max 100chars-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Tag" style="margin-top:15px">Tags</label>
+                <div class="input-group col-md-5">
+                    <dynamic-input field="tag" array="contact.tags" value="tagName" errors="tagValidationMessages"> </dynamic-input>
+                </div>
+            </div>
+
+            <!-- Additional contact info, non-required, max 500chars-->
+            <div class="addEditContactInfo">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="additionalInfo">Additional Info</label>
+                    <div class="input-group col-md-5">
+                        <textarea class="form-control"
+                                  id="additionalInfo" name="additionalInfo"
+                                  rows="8"
+                                  ng-model="contact.additionalInfo"
+                                  ng-maxlength="500"></textarea>
+                        <div ng-show="addEditContactForm.additionalInfo.$invalid">
+                            <div ng-show="addEditContactForm.additionalInfo.$error.maxlength" class="help-block">Additional info is too long.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <input type="submit"
+                           value="Save Contact"
+                           class="btn btn-success btn-md"
+                           ng-click="saveContact()" />
+                    <a href="/#"><input type="button" value="Cancel" class="btn btn-md" /></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>  

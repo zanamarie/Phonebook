@@ -1,0 +1,69 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 pull-right col-md-offset-3 ">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading c-list">
+                <span class="title" ng-bind="contact.contactName"></span>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <a ng-href="#!/edit/{{contact.contactId}}"
+                       class="btn btn-primary pull-right" data-placement="top"
+                       title="Edit Contact">Edit Contact</a>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 " align="center">
+                        <img ng-src="{{contact.contactAvatar}}"
+                             class="img-circle img-responsive profile"
+                             alt="Contact Picture">
+                    </div>
+                    <div class="col-md-9 col-lg-9">
+                        <table class="table table-user-information">
+                            <tbody>
+                                <tr>
+                                    <td class="leftCell">Contact name:</td>
+                                    <td class="rightCell" ng-bind="contact.contactName"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftCell">Address:</td>
+                                    <td class="rightCell" ng-bind="contact.address"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftCell">City:</td>
+                                    <td class="rightCell" ng-bind="contact.city"></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftCell">Zip Code:</td>
+                                    <td class="rightCell" ng-bind="contact.zipCode"></td>
+                                </tr>
+                                  <tr>
+                                    <td class="leftCell">Phones:</td>
+                                    <td class="rightCell">
+                                        <div ng-repeat="phone in contact.phoneNumbers" ng-bind="phone.phoneNumber"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="leftCell">Emails:</td>
+                                    <td class="rightCell">
+                                        <div ng-repeat="email in contact.emails" ng-bind="email.emailAddress"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="leftCell">Tags:</td>
+                                    <td class="rightCell">
+                                        <div ng-repeat="tag in contact.tags" ng-bind="tag.tagName"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="leftCell">Additional Info:</td>
+                                    <td class="rightCell" ng-bind="contact.additionalInfo"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

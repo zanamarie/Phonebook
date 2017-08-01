@@ -1,0 +1,35 @@
+﻿<div>
+    <div ng-repeat="item in array">
+        <ng-form name="{{ 'innerForm' + field.name }}">
+            <div class="dynamicInputForm">
+                <input type="{{field.type}}"
+                       name="{{field.name}}" class="form-control"
+                       placeholder="{{field.placeholder}}"
+                       ng-model="item[value]"
+                       ng-required="{{field.required}}"
+                       ng-maxlength="{{field.maxlength}}" />
+                <button type="button"
+                        class="btn btn-success btn-add"
+                        ng-show="showAddField(item)"
+                        ng-click="addItemToArray(item[value])">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button type="button"
+                        class="btn btn-danger"
+                        ng-show="showRemoveField()"
+                        ng-click="removeItemFromArray(item)">
+                    <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </div>
+            <div ng-show="{{ 'innerForm' + field.name }}.{{field.name}}.$invalid">
+                <div class="card-warning" role="alert"
+                     ng-show="{{ 'innerForm' + field.name }}.{{field.name}}.$error.required">{{errors.required}}</div>
+                <div class="card-warning" role="alert"
+                     ng-show="{{ 'innerForm' + field.name }}.{{field.name}}.$error.maxlength">{{errors.maxlength}}</div>
+                <div class="card-warning" role="alert"
+                     ng-show="{{ 'innerForm' + field.name }}.{{field.name}}.$error.email">{{errors.email}} </div> 
+            </div>
+        </ng-form>
+    </div>
+    <div>{{emptyFieldMessage}}</div>
+</div>
